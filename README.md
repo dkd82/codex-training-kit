@@ -6,9 +6,9 @@ Dépôt de distribution : le guide interactif et le code de départ de chaque jo
 Jour1/                          TP 1 à 3 — Prise en main de Codex & génération assistée
   Guide_Participant_Jour1.html   guide interactif : ouvrez-le simplement dans votre navigateur
   Starters/                     tp1_initialiser, tp2_api, base_facturation
-Jour2/                          TP 4 à 7 — Fonctions avancées, Tools & Agents spécialisés
+Jour2/                          TP 4 à 7 (+ TP 8 bonus) — Fonctions avancées, Tools & Agents, orchestration multi-agents, hooks & commandes perso
   Guide_Participant_Jour2.html
-  Starters/                     base_facturation, tp4_action, tp5_tool, tp6_agents, tp7_refactor
+  Starters/                     base_facturation, tp4_action, tp5_tool, tp6_agents, tp7_refactor, tp8_hooks
 ```
 
 ## Utilisation
@@ -30,3 +30,9 @@ Python 3.11 ou plus, Git, un IDE, et Codex installé (CLI et/ou extension). Pour
 
 Le Jour 2 embarque sa propre copie de `base_facturation` : si vous n'avez pas fait le Jour 1, ou si vous préférez repartir
 d'une base neuve, utilisez celle fournie dans `Jour2/Starters/`.
+
+## TP 8 — bonus (hooks & commande personnalisée)
+
+`Jour2/Starters/tp8_hooks/` contient un hook `PreToolUse` et une commande personnalisée (`/prompts:`) à compléter, avec leurs
+tests. Facultatif : à faire en fin de Jour 2 si le temps le permet, sinon en autonomie après la formation — voir le guide du
+participant Jour 2 pour les instructions.

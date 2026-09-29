@@ -1,4 +1,4 @@
-# Starters — Jour 2 (TP 4 à 7) — Formation OpenAI Codex
+# Starters — Jour 2 (TP 4 à 7, + TP 8 bonus) — Formation OpenAI Codex
 
 Les consignes détaillées sont dans le **Guide du participant — Jour 2** (HTML interactif ou Word).
 Toutes les commandes du guide se lancent depuis ce dossier `Starters/`.
@@ -10,6 +10,7 @@ Toutes les commandes du guide se lancent depuis ce dossier `Starters/`.
 | `tp5_tool/` | TP 5 | API interne factice, `outils.py` / `serveur_mcp.py` / démo function calling à compléter, 16 tests |
 | `tp6_agents/` | TP 6 | deux agents (`architecte`, `developpeur`) à compléter |
 | `tp7_refactor/` | TP 7 | code hérité `legacy/devis.py` + 8 tests de caractérisation |
+| `tp8_hooks/` | TP 8 *(bonus)* | un hook `PreToolUse` à compléter + une commande personnalisée (`/prompts:`) à compléter, 6 tests |
 
 ## Prérequis
 Python 3.11+, Git, Codex installé, un IDE. Pour le TP 5 (partie A) : une clé d'API OpenAI (`OPENAI_API_KEY`) et un modèle disponible (`OPENAI_MODEL`).
@@ -18,3 +19,4 @@ Python 3.11+, Git, Codex installé, un IDE. Pour le TP 5 (partie A) : une clé d
 ## À savoir
 - `tp5_tool` est livré avec des tests qui **échouent** tant que `outils.py` n'est pas complété : c'est voulu (auto-évaluation).
 - `tp7_refactor` doit être **au vert** dès le départ : ses tests protègent le comportement pendant le refactor.
+- `tp8_hooks` est **bonus** : à faire si le temps le permet en fin de journée, sinon en autonomie après la formation.
