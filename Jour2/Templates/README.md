@@ -9,6 +9,7 @@ vu pendant les TP, sans dépendre du reste du kit.
 | `01_Bonnes_pratiques_Codex_en_equipe.md` | Principes de base, checklist avant/pendant une tâche, agents et orchestration, sécurité, revue de code, limites à connaître. |
 | `02_Templates_de_prompts_reutilisables.md` | Neuf squelettes de prompts prêts à copier-coller (feature, bug, refactor, revue, tests, documentation, exploration, orchestration en parallèle, plan). |
 | `03_Conventions_equipe_Codex.md` | Où ranger quoi (partagé vs personnel), permissions par défaut, gestion des secrets, processus de revue, cycle de vie des agents/skills/hooks partagés. |
+| `04_Exemple_permissions_codex.toml` | Exemple commenté de profil de permissions Codex (fonctionnalité bêta) à copier dans `.codex/config.toml` : espace de travail inscriptible, secrets et clés SSH non lisibles, réseau limité à une liste de domaines autorisés. |
 
 ## Comment les utiliser
 

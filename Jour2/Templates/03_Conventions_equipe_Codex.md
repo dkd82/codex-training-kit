@@ -45,6 +45,23 @@ options `--sandbox` de la CLI (`read-only`, `workspace-write`, `danger-full-acce
 fixer son propre `sandbox_mode` dans son fichier `.toml` (par exemple, forcer `read-only` pour un agent
 d'exploration) — utilisez-le pour que le garde-fou survive même si quelqu'un oublie de le préciser dans le prompt.
 
+### Aller plus loin : un fichier de permissions partagé pour l'équipe
+
+**[Codex]** Au-delà des trois niveaux ci-dessus, Codex propose (en **bêta**, susceptible d'évoluer) des
+**profils de permissions** bien plus fins, définis dans `.codex/config.toml` : quels dossiers sont lisibles,
+inscriptibles ou totalement interdits (fichier par fichier ou motif par motif), et quels domaines réseau sont
+autorisés. Un profil personnalisé part en général d'un profil intégré (`:read-only` ou `:workspace`) avec
+`extends`, puis n'ajoute que les règles qui diffèrent — par exemple : garder l'espace de travail inscriptible,
+mais interdire la lecture des fichiers `.env` et des clés SSH, et limiter le réseau à `api.openai.com`.
+
+Ce mécanisme **ne se combine pas** avec les réglages `sandbox_mode` / `--sandbox` ci-dessus : une équipe choisit
+l'un ou l'autre pour un projet donné, pas les deux à la fois.
+
+Un exemple commenté, prêt à copier dans `.codex/config.toml`, est fourni dans
+`04_Exemple_permissions_codex.toml` de ce dossier. Testez-le sur un projet non sensible avant de le déployer à
+toute l'équipe, et revérifiez son comportement à chaque montée de version de Codex tant que la fonctionnalité
+reste bêta.
+
 ## 4. Gestion des secrets
 
 - Jamais de clé d'API, mot de passe ou jeton en clair dans : le code, un prompt, `AGENTS.md`, un fichier

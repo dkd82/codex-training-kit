@@ -1,0 +1,64 @@
+# Exemple de profil de permissions Codex pour une équipe
+#
+# À copier dans .codex/config.toml, à la racine de votre dépôt (versionné, donc
+# partagé avec toute l'équipe qui travaille sur ce projet).
+#
+# [Codex] Ceci utilise les « permission profiles », une fonctionnalité BÊTA de
+# Codex documentée officiellement (developers.openai.com/codex, rubrique
+# « Permissions »), susceptible d'évoluer : relisez la documentation avant de
+# déployer ce fichier largement, et testez-le d'abord sur un projet non sensible.
+#
+# [Codex] Important : les profils de permissions ne se combinent PAS avec les
+# anciens réglages sandbox_mode / sandbox_workspace_write. N'ajoutez pas
+# sandbox_mode dans un fichier de config chargé par Codex si vous utilisez ce
+# profil : s'il est présent quelque part (config, profil CLI, --sandbox), Codex
+# retombe sur l'ancien mécanisme et ignore default_permissions. Choisissez l'un
+# ou l'autre, pas les deux, pour une même session.
+#
+# Si votre équipe préfère rester sur le mécanisme plus simple et stable (les
+# préréglages /permissions : Read-only, Auto, Full Access, ou --sandbox en CLI),
+# ce fichier ne s'applique pas à vous : voir 03_Conventions_equipe_Codex.md,
+# section 3.
+
+# Le profil "equipe" devient le profil actif par défaut pour quiconque ouvre
+# Codex dans ce dépôt.
+default_permissions = "equipe"
+
+# Sans cette ligne, les règles de domaines réseau ci-dessous ne sont PAS
+# appliquées : network.enabled = true donnerait alors un accès réseau direct et
+# non filtré, sans passer par l'allowlist.
+[features]
+network_proxy = true
+
+[permissions.equipe]
+description = "Écriture dans l'espace de travail ; fichiers d'environnement et clés SSH non lisibles ; réseau limité à l'API OpenAI."
+# On part du profil intégré ":workspace" (lecture/écriture dans l'espace de
+# travail courant + dossiers temporaires système) plutôt que de tout redéfinir :
+# les protections de base sont conservées (par exemple, le dossier .codex/ du
+# projet reste en lecture seule sauf si on le réautorise explicitement).
+extends = ":workspace"
+
+[permissions.equipe.filesystem]
+# Nécessaire pour les règles "deny" en motif non borné (**) ci-dessous, sur
+# Linux, WSL et Windows natif : limite la profondeur explorée au démarrage.
+glob_scan_max_depth = 3
+# Chemin exact : vos clés SSH ne doivent jamais être lisibles par une commande
+# lancée par Codex, même si le reste de votre profil est accessible.
+"~/.ssh" = "deny"
+
+[permissions.equipe.filesystem.":workspace_roots"]
+# Aucun fichier d'environnement (secrets, clés d'API) n'est lisible par une
+# commande, même si le reste du dépôt est en écriture.
+"**/*.env" = "deny"
+
+[permissions.equipe.network]
+enabled = true
+
+[permissions.equipe.network.domains]
+# N'autorisez que les domaines dont votre équipe a réellement besoin : tout
+# domaine absent de cette liste est bloqué par le proxy réseau une fois
+# features.network_proxy actif.
+"api.openai.com" = "allow"
+# Ajoutez vos propres domaines selon vos besoins (registre de paquets interne,
+# API interne…), par exemple :
+# "registry.exemple-entreprise.com" = "allow"
