@@ -1,46 +1,55 @@
-# Formation OpenAI Codex — Kit participant
+# IA pour les devs – Maîtrisez l'IA pour coder
+## TP des participants (projet fil rouge « pulselab »)
 
-Dépôt de distribution : le guide interactif et le code de départ de chaque jour, prêts à cloner.
+Formation intra-entreprise pour CGG Services SAS · Formateur : Daouda DIOP
 
-```text
-Jour1/                          TP 1 à 3 — Prise en main de Codex & génération assistée
-  Guide_Participant_Jour1.html   guide interactif : ouvrez-le simplement dans votre navigateur
-  Starters/                     tp1_initialiser, tp2_api, base_facturation
-Jour2/                          TP 4 à 7 (+ TP 8 bonus) — Fonctions avancées, Tools & Agents, orchestration multi-agents, hooks & commandes perso
-  Guide_Participant_Jour2.html
-  Starters/                     base_facturation, tp4_action, tp5_tool, tp6_agents, tp7_refactor, tp8_hooks
-  Templates/                    à réutiliser en équipe après la formation (bonnes pratiques, prompts, conventions)
+Ce dépôt contient tout ce dont vous avez besoin pour les TP, jour par jour, ainsi que des modèles réutilisables pour votre équipe.
+Aucune donnée confidentielle n'est utilisée : le projet `pulselab` travaille sur des mesures simulées.
+Les TP sont écrits pour fonctionner avec n'importe quel assistant de code IA ; les exemples et les modèles ciblent **Kilo Code**.
+
+## Structure
+
+```
+Jour1/
+  IA_Pour_Les_Devs_CGG_Services_SAS_Jour1.pdf   <- support de présentation du Jour 1
+  TP_Jour1_Participant.html                     <- fiche de TP du Jour 1 (à ouvrir dans un navigateur)
+  pulselab_jour1_starter.zip                    <- projet Python de départ du Jour 1
+  Solutions_Prompts_Jour1.md                    <- prompts modèles pour les étapes des TP (à comparer après votre essai)
+
+Jour2/
+  IA_Pour_Les_Devs_CGG_Services_SAS_Jour2.pdf   <- support de présentation du Jour 2
+  Aide-mémoire – Français.pdf                   <- aide-mémoire des commandes Kilo CLI
+  TP_Jour2_Participant.html                     <- fiche de TP du Jour 2
+  pulselab_jour2_starter.zip                    <- projet Python de départ du Jour 2 (état de référence propre)
+  Solutions_Prompts_Jour2.md                    <- prompts modèles pour les étapes des TP
+
+Bonnes_Pratiques_Codage_IA.md                   <- mémo : bonnes pratiques pour coder avec l'IA
+
+templates/                                      <- fichiers réutilisables à adapter dans votre équipe
+  prompts/            dix modèles de prompts (explorer, planifier, cause racine, correction de bug, nouvelle fonction, tests, ...)
+  kilo-project-kit/   kilo.jsonc (instructions + permissions), AGENTS.md, règles, agents, skills, commandes slash
+  multi-agent/        quand plusieurs agents valent la peine, sous-agents dans Kilo Code, modèle de brief, prompt de délégation
+  team/               charte, checklist de revue, journal IA, plan de pilote, fiche de workflow
+  automation/         hook pre-commit avec une étape IA consultative, critères de revue, brouillon de CI
 ```
 
-## Utilisation
+## Pour commencer
 
-1. Clonez ce dépôt (ou téléchargez-le en zip).
-2. Ouvrez `JourN/Guide_Participant_JourN.html` dans votre navigateur — aucune installation requise. Le guide fonctionne hors ligne ;
-   votre progression, vos cases cochées et les prompts que vous rédigez sont enregistrés automatiquement dans ce navigateur.
-3. Suivez les instructions du guide en travaillant dans `JourN/Starters/`.
+1. Récupérez ce dépôt (`git clone <url>`, ou `git pull` si vous l'avez déjà).
+2. Ouvrez `Jour1/TP_Jour1_Participant.html` dans votre navigateur (double-clic : la page est autonome, aucun réseau n'est nécessaire).
+3. Suivez le TP 1.0 : il vous guide pour décompresser `pulselab_jour1_starter.zip` et configurer votre environnement Python.
+4. Le Jour 2, faites de même avec le dossier `Jour2/` (faites d'abord un `git pull` si vous avez cloné plus tôt).
 
-Chaque bloc « Squelette de prompt (à compléter) » est un champ de texte libre : écrivez votre prompt directement dedans
-(bouton **Copier** pour le copier vers Codex, **↺ Réinitialiser** pour revenir au squelette de départ).
+Dans les fiches de TP, vous pouvez **écrire vos prompts directement dans la page** (les encadrés jaunes, et un bloc-notes facultatif sur les étapes IA).
+Vos prompts, vos étapes cochées et vos notes sont enregistrés **localement dans votre navigateur** (pas dans ce dépôt) : continuez à utiliser le même navigateur et le même emplacement de fichier.
+Copiez le prompt terminé dans votre assistant avec le bouton *Copier mon prompt*.
 
-## Prérequis
+## Règles rappelées tout au long des TP
 
-Python 3.11 ou plus, Git, un IDE, et Codex installé (CLI et/ou extension). Pour certains TP : une clé d'API OpenAI
-(fournie par votre formateur) — à placer uniquement dans une variable d'environnement, jamais dans un fichier.
+- Pas de données confidentielles, pas de secrets dans les prompts (le jeu de données est synthétique).
+- Commitez avant toute action de l'IA susceptible de modifier des fichiers, et lisez chaque diff.
 
-## À partir du Jour 3 ou en cas de doute
+## À propos des modèles
 
-Le Jour 2 embarque sa propre copie de `base_facturation` : si vous n'avez pas fait le Jour 1, ou si vous préférez repartir
-d'une base neuve, utilisez celle fournie dans `Jour2/Starters/`.
-
-## TP 8 — bonus (hooks & commande personnalisée)
-
-`Jour2/Starters/tp8_hooks/` contient un hook `PreToolUse` et une commande personnalisée (`/prompts:`) à compléter, avec leurs
-tests. Facultatif : à faire en fin de Jour 2 si le temps le permet, sinon en autonomie après la formation — voir le guide du
-participant Jour 2 pour les instructions.
-
-## Templates à partager avec votre équipe
-
-`Jour2/Templates/` contient trois documents prêts à diffuser après la formation, à toute l'équipe qui utilise Codex sur vos
-dépôts (pas seulement les participants) : bonnes pratiques de code avec Codex en équipe, des squelettes de prompts
-réutilisables, et des conventions d'équipe (où ranger quoi, permissions par défaut, gestion des secrets, processus de
-revue). Voir `Jour2/Templates/README.md`.
+Les fichiers Kilo Code de `templates/` suivent la documentation officielle telle que lue en septembre 2026, et leur syntaxe a été validée par un script.
+Ils n'ont **pas été exécutés dans Kilo Code** par leur auteur : utilisez le test de fumée de `templates/kilo-project-kit/README.md` et vérifiez votre version installée.

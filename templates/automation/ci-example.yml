@@ -1,0 +1,37 @@
+# BROUILLON, jamais exécuté : syntaxe vérifiée uniquement.
+# Pipeline de CI illustratif (syntaxe GitHub Actions). Adaptez-le à VOTRE système de CI.
+# Les contrôles déterministes font barrière. Le job de revue IA est uniquement consultatif.
+name: ci
+
+on:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt pytest-cov
+      - run: python -m pytest -q --cov=pulselab --cov-fail-under=80
+
+  ai-review:
+    # Consultatif : ne bloque jamais le merge. Désactivé tant que votre outil IA approuvé n'est pas configuré.
+    if: false
+    needs: tests
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+      pull-requests: write        # uniquement pour publier des commentaires
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Relire le diff avec l'outil approuvé
+        run: |
+          git diff origin/${{ github.base_ref }}...HEAD > pr.diff
+          # votre-cli-ia-approuvé --instructions docs/REVIEW_CRITERIA.md < pr.diff > review.md
+          # Publiez review.md en commentaire de PR avec le mécanisme propre à votre CI.

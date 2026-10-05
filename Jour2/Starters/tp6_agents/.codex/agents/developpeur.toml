@@ -1,8 +1,0 @@
-# TP 6 — Agent « developpeur » à compléter.
-
-name = "developpeur"
-description = "TODO : quand faut-il utiliser cet agent ?"
-developer_instructions = """
-TODO : rôle, méthode (lire le design, écrire les tests, coder, lancer les tests),
-et règles impératives (respecter le design, ne pas casser les tests existants, aucune dépendance externe).
-"""

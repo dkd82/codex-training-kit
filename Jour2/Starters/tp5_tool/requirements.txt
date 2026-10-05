@@ -1,3 +1,0 @@
-pytest>=8
-openai>=1.60
-mcp

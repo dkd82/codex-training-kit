@@ -1,0 +1,32 @@
+{
+  // Réservé au formateur : déposez ce dossier .kilo/ (ainsi que briefs/ et MULTI_AGENT_KILO.md) à la racine
+  // de lab2.3_multi_agent/ pour reproduire en direct la démo Kilo Code du TP 2.3.
+  // Organisation et clés vérifiées dans kilo.ai/docs, septembre 2026 (même schéma que
+  // pulselab-tp-participants/templates/kilo-project-kit/kilo.jsonc).
+  "$schema": "https://app.kilo.ai/config.json",
+
+  "permission": {
+    "edit": {
+      "*": "ask",
+      // vérité de référence : ne doit pas changer pendant le TP
+      "tests/golden/*": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "python -m pytest *": "allow",
+      "rm *": "deny",
+      "git reset --hard *": "deny",
+      "git clean *": "deny"
+    },
+    // quels sous-agents l'agent principal (Code) peut appeler : les trois sous-agents du TP 2.3
+    "task": {
+      "*": "ask",
+      "explorer-a": "allow",
+      "fit-b": "allow",
+      "export-c": "allow"
+    }
+  }
+}
