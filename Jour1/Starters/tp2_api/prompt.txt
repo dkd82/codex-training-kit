@@ -1,0 +1,4 @@
+Objectif : TODO (ce que vous voulez obtenir, en une phrase)
+Contraintes : TODO (langage, versions, bibliothèques, ce qu'il ne faut pas faire)
+Style : TODO (conventions de code, langue des commentaires)
+Format attendu : TODO (uniquement le code ? avec tests ? avec explications ?)
